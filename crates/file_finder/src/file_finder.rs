@@ -3,6 +3,8 @@ mod file_finder_tests;
 #[cfg(test)]
 mod multi_select_tests;
 
+mod folder_finder;
+
 use futures::future::join_all;
 pub use open_path_prompt::OpenPathDelegate;
 
@@ -73,6 +75,7 @@ pub struct FileFinder {
 
 pub fn init(cx: &mut App) {
     cx.observe_new(FileFinder::register).detach();
+    cx.observe_new(folder_finder::register).detach();
     cx.observe_new(OpenPathPrompt::register).detach();
     cx.observe_new(OpenPathPrompt::register_new_path).detach();
 }
